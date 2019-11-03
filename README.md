@@ -1,14 +1,12 @@
 # SUPER SHOOTER 
 
 ## Description
-This is a shooter game where the player has to kill enemies to get the best score. The player starts with 3 lives and with the score 0. Enemies will come from every sides of the screen randomly and try to kill the player. To defend himself, the player have a laser gun to blow up the enemies. The game ends when the player has no lives left.
+This is a shooter game where the player has to kill enemies to get the best score. The player starts with 3 lives and score 0. Enemies will randomly come from top of the screen and try to kill the player. To defend himself, the player have a laser gun to blow up the enemies. The game ends when the player has no lives left.
 
 ## Instructions
 
 - to move left, press left arrow key
 - to move right, press right arrow key
-- to move up, press up arrow key
-- to move down, press down arrow key
 - to shoot, press space bar
 
 ---
@@ -20,14 +18,20 @@ This is a shooter game where the player has to kill enemies to get the best scor
 - random generation of enemies from the top of the screen
 - check for collison between player and enemies
 - player doesn't move if any keys are pressed
+- enemy hit gives 10 pts
+- lives
 
 ## Backlog
 
+- direction up and down
+- enemies will come from every sides
+- enemies movements will update to the player position
 - score
+- move up
+- move down
 - increase dificulty 
 - get random items that can change the bullets
 - press two keys at the same time
-- lives
 - images
 - sound effects
 
@@ -61,17 +65,17 @@ Game () {
     this.score;
 }
 
-game.prototype.gameStart () {}
+Game.prototype.gameStart () {}
 
-game.prototype.startLoop () {}
+Game.prototype.startLoop () {}
 
-game.prototype.checkCollision () {}
+Game.prototype.checkCollision () {}
 
-game.prototype.updateGameScore () {}
+Game.prototype.updateGameScore () {}
 
-game.prototype.gameOver () {}
+Game.prototype.gameOver () {}
 
-game.prototype.removeGameOverScreen () {}
+Game.prototype.removeGameOverScreen () {}
 ```
 
 #### Player.js
@@ -88,15 +92,15 @@ Player () {
     this.speed;
 }
 
-player.prototype.setDirection () {}
+Player.prototype.setDirection () {}
 
-player.prototype.collision() {}
+Player.prototype.collision() {}
 
-player.prototype.screenCollision () {}
+Player.prototype.screenCollision () {}
 
-player.prototype.removeLife() {}
+Player.prototype.removeLife() {}
 
-player.prototype.draw() {}
+Player.prototype.draw() {}
 
 ```
 
@@ -112,13 +116,38 @@ Enemy () {
     this.size
 }
 
-enemy.prototype.draw () {}
+Enemy.prototype.draw () {}
 
-enemy.prototype.updatePosition () {}
+Enemy.prototype.updatePosition () {}
 
-enemy.prototype.outOfLife () {}
+Enemy.prototype.outOfLife () {}
 
-enemy.prototype.playerCollision () {}
+Enemy.prototype.playerCollision () {}
+```
+
+#### Bullet
+
+```javascript
+Bullet () {
+    this.x;
+    this.y;
+    this.speed;
+    this.size;
+    this.canvas;
+    this.ctx;
+    this.direction;
+}
+
+Bullet.prototype.draw () {}
+
+Bullet.prototype.bulletPosition () {}
+
+Bullet.prototype.bulletCollision () {}
+
+Bullet.prototype.isInScreen () {}
+
+Bullet.prototype.draw () {}
+
 ```
 
 ---
@@ -135,7 +164,7 @@ Definition of the different states and their transition (transition functions)
     - game.start()
     - game.updateGameScore()
 
-- gameoverScreen
+- gameOverScreen
     - game.gameOver()
     - addEventListener() restart button
 
@@ -170,12 +199,12 @@ Definition of the different states and their transition (transition functions)
 
 
 ### Trello
-[Link url](https://trello.com)
+[Link url](https://trello.com/b/yvogOEBM/super-shooting-game)
 
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
+[Link Repo](https://github.com/Fred011/Project-module-1)
 [Link Deploy](http://github.com)
 
 
