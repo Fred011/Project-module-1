@@ -17,8 +17,8 @@ function buildDom(htmlString) {
 
       splashScreen = buildDom(`
        <main>
-            <h1>SUPER SHOOTER</h1>
-            <button>Start Game</button>
+            <h1><img src="https://fontmeme.com/permalink/191103/6c19395673d1c662e306015215c8acc7.png" alt="tiny-islanders-font" id="title"></h1>
+            <button class="start-btn">Start Game</button>
        </main>
       `);
   
@@ -37,8 +37,11 @@ function buildDom(htmlString) {
     function createGameScreen() {
       var gameScreen = buildDom(`
         <main class="game">
+            <section id="score-section">
             <span>Score: </span><span id="score">0</span>
             <span>Lives: </span><span id="lives">3</span>
+            </section>
+            
           <section class="canvas-container">
             <canvas></canvas>
           </section>
@@ -60,6 +63,6 @@ function buildDom(htmlString) {
     }
   
     createSplashScreen();
-  }
-  
-  window.onload = main;
+  };
+
+  window.addEventListener('load', main)

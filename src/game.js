@@ -3,31 +3,43 @@ function Game() {
     this.ctx = null;
     this.enemies = [];
     this.player = null;
+    this.bullets = [];
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
   }
-  
+  Game.prototype.createBullet = function () {
+
+    this.bullets.push(new Bullet(this.canvas, this.player.x));
+    this.bullets.forEach(function (bullet) {
+      console.log('hola', this.bullets)
+      bullet.shot();
+    })
+    console.log('bullet created')
+  }
   Game.prototype.start = function() {
     // Get the canvas element, create ctx, save canvas and ctx in the game object
     this.canvasContainer = document.querySelector('.canvas-container');
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
+
+    this.livesElement = this.gameScreen.querySelector('.lives .value');
+    this.scoreElement = this.gameScreen.querySelector('.score .value');
   
     // Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
     this.containerHeight = this.canvasContainer.offsetHeight;
-    this.canvas.setAttribute('width', this.containerWidth);
-    this.canvas.setAttribute('height', this.containerHeight);
+    this.canvas.setAttribute('width', window.innerWidth);
+    this.canvas.setAttribute('height', window.innerHeight);
   
     // Create new player
     this.player = new Player(this.canvas, 3);
-  
+
     // Add event listener for keydown movements
 
     this.handleKeydown = function (event) {
 
-      if (event.key === 'ArrowLeft') {
+      if (event.keyCode === 37) {
   
           console.log('LEFT');
           this.player.setDirection('left')
@@ -39,6 +51,25 @@ function Game() {
           this.player.setDirection('right');
   
       }
+
+      // TO KEEP FOR THE BACKLOG MOVEMENTS
+      else if (event.key === 'ArrowUp') {
+        console.log('UP');
+        this.player.setDirection('up')
+      }
+      
+      // TO KEEP FOR THE BACKLOG MOVEMENTS
+      else if (event.key === 'ArrowDown') {
+        console.log('DOWN');
+        this.player.setDirection('down')
+      }
+
+      else if (event.keyCode === 32) {
+  
+        event.preventDefault();
+      this.createBullet();
+    
+      } 
     };
 
     var gameReference = this;
@@ -53,25 +84,38 @@ function Game() {
   Game.prototype.startLoop = function() {
 
     var loop = function () {
+      // CREATE NEW RANDOM ENEMIES
+      // if (Math.random() > 0.90) {
 
-      if (Math.random() > 0,90) {
+      //   var randomX = this.canvas.width * Math.random();
+      //   var newEnemy = new Enemy (this.canvas, randomX, 10)
 
-        var randomX = this.canvas.width * Math.random();
-        var newEnemy = new Enemy (this.canvas, randomX, 5)
+      //   this.enemies.push(newEnemy);
+      // }
+      // console.log(this.enemies);
 
-        this.enemies.push(newEnemy);
-      }
+      // // CHECK COLLISIONS
+      // this.checkCollisions();
 
-      this.checkCollisions();
+      // this.player.handleScreenCollision();
 
-      this.player.handleScreenCollision();
+      // //  TODO 
+      // this.enemies = this.enemies.filter(function (enemy){
+      //   enemy.updatePosition();
 
-      this.enemies = this.enemies.filter(function (){
+      //   //  TODO check why it returns false
+      //   return enemy.isInsideTheScreen();
+      // });
 
-        enemy.updatePosition();
-        return enemy.isInsideTheScreen();
-      });
+      
+      //this.enemies = this.enemies.filter()
 
+      this.bullets = this.bullets.filter(function (bullet) {
+        bullet.updatePosition()
+      })
+
+
+      // CLEAR CANVAS
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       this.player.draw();
@@ -79,26 +123,61 @@ function Game() {
       this.enemies.forEach( function (enemy) {
         
         enemy.draw();
-
-        if (!this.gameIsOver) {
-          window.requestAnimationFrame(loop);
-        };
-
-        this.updateGameScore();
-
       });
+     // console.log(this.enemies);
+      if (!this.gameIsOver) {
+        window.requestAnimationFrame(loop);
+      };
+  
+      this.updateGameScore();
 
     }.bind(this);
 
-    loop()
-    
+    loop();
+
   };
 
 
   Game.prototype.checkCollisions = function () {
 
-  }
+    this.enemies.forEach(function (enemy) {
+
+      if (this.player.didCollide(enemy)) {
+        this.player.removeLife();
+
+        if (this.player.lives === 0) {
+          this.gameOver();
+        };
+      };
+     
+
+    }, this);
+  };
+
+  
 
   Game.prototype.updateGameScore = function () {
     
-  }
+    this.score += 5;
+    //this.livesElement.innerHTML = this.player.lives;
+    //this.scoreElement.innerHTML = this.score;
+    
+  };
+
+  Game.prototype.passGameOverCallback = function(callback) {
+
+    this.gameIsOverCallback = callback;
+
+};
+
+Game.prototype.gameOver = function() {
+
+  this.gameIsOver = true;
+
+};
+
+Game.prototype.removeGameScreen = function() {
+
+  this.gameScreen.remove();
+
+};

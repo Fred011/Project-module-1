@@ -1,31 +1,56 @@
   
-function Player(canvas) {
+function Player(canvas, lives) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
   
-    this.size = 100;
+    this.lives = lives;
+    this.size = 50;
     this.x = canvas.width / 2;
-    this.y = 200;
+    this.y = (canvas.height - 1) - this.size;
+    this.direction = 0;
+    this.speed = 10;
   }
+
+  Player.prototype.setDirection = function (direction) {
+
+    if(direction === 'left') {
+      this.direction = this.x -= this.speed;
+    }
+
+    else if (direction === 'right') {
+      this.direction = this.x += this.speed;
+    }
+
+    else if (direction === 'up') {
+      this.direction = this.y -= this.speed;
+    }
+
+    // else if (direction === 'down') {
+    //   this.direction = this.y += this.speed;
+    // }
+
+  };
   
-  Player.prototype.draw = function() {
-    this.ctx.fillStyle = '#66D3FA';
-    // fillRect(x, y, width, height)
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
-  };
 
-  Player.prototype.setDirection = function () {
+   Player.prototype.didCollide = function () {
 
-  };
+   };
 
-  Player.prototype.collision = function () {
+  Player.prototype.handleScreenCollision = function () {
 
-  };
-
-  Player.prototype.screenCollision = function () {
 
   };
 
   Player.prototype.removeLife = function () {
+
+    this.lives -= 1
+
+  };
+
+  Player.prototype.draw = function() {
+
+    this.ctx.fillStyle = 'blue';
+    // fillRect(x, y, width, height)
+    this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
   };
