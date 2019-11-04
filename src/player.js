@@ -8,7 +8,7 @@ function Player(canvas, lives) {
     this.x = canvas.width / 2;
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
-    this.speed = 10;
+    this.speed = 30;
   }
 
   Player.prototype.setDirection = function (direction) {
@@ -37,6 +37,7 @@ function Player(canvas, lives) {
    };
 
   Player.prototype.handleScreenCollision = function () {
+
 
 
   };

@@ -8,15 +8,8 @@ function Game() {
     this.gameScreen = null;
     this.score = 0;
   }
-  Game.prototype.createBullet = function () {
+  
 
-    this.bullets.push(new Bullet(this.canvas, this.player.x));
-    this.bullets.forEach(function (bullet) {
-      console.log('hola', this.bullets)
-      bullet.shot();
-    })
-    console.log('bullet created')
-  }
   Game.prototype.start = function() {
     // Get the canvas element, create ctx, save canvas and ctx in the game object
     this.canvasContainer = document.querySelector('.canvas-container');
@@ -64,10 +57,12 @@ function Game() {
         this.player.setDirection('down')
       }
 
-      else if (event.keyCode === 32) {
+      else if (event.key === ' ') {
   
         event.preventDefault();
-      this.createBullet();
+        console.log('space')
+        this.createBullet();
+        console.log(this.createBullet());
     
       } 
     };
@@ -80,10 +75,21 @@ function Game() {
   
     this.startLoop();
   };
+
+  Game.prototype.createBullet = function () {
+
+    //this.bullets.push(newBullet)
+    this.bullets.push(new Bullet(this.canvas, this.player.x));
+    console.log('test    ', this.player.x, 'tes')
+    
+    // 
+    console.log('bullet created', this.bullets)
+  }
   
   Game.prototype.startLoop = function() {
 
     var loop = function () {
+      
       // CREATE NEW RANDOM ENEMIES
       // if (Math.random() > 0.90) {
 
@@ -107,18 +113,28 @@ function Game() {
       //   return enemy.isInsideTheScreen();
       // });
 
-      
-      //this.enemies = this.enemies.filter()
-
       this.bullets = this.bullets.filter(function (bullet) {
-        bullet.updatePosition()
-      })
+        bullet.updatePosition();
+        return bullet.isInsideScreen();
+      });
+
+      this.bullets.forEach(function (bullet){
+      
+
+          console.log(`hello` , bullet )
+          bullet.draw();
+        //   // bullet.shot();
+    
+        //   // this.bullets.push(newBullet);
+      
+      });
 
 
       // CLEAR CANVAS
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       this.player.draw();
+
 
       this.enemies.forEach( function (enemy) {
         
