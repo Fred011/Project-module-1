@@ -30,7 +30,7 @@ Bullet.prototype.updatePosition = function () {
 
 Bullet.prototype.draw = function () {
 
-    this.ctx.fillStyle = '#070f0a';
+    this.ctx.fillStyle = 'red';
     this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
     // fillRect(x, y, width, height)

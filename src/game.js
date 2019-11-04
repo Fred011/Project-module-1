@@ -28,6 +28,8 @@ function Game() {
     // Create new player
     this.player = new Player(this.canvas, 3);
 
+   
+
     // Add event listener for keydown movements
 
     this.handleKeydown = function (event) {
@@ -62,10 +64,13 @@ function Game() {
         event.preventDefault();
         console.log('space')
         this.createBullet();
-        console.log(this.createBullet());
-    
+        console.log('what is this', this);
       } 
     };
+
+    
+
+
 
     var gameReference = this;
 
@@ -81,7 +86,6 @@ function Game() {
     //this.bullets.push(newBullet)
     this.bullets.push(new Bullet(this.canvas, this.player.x));
     console.log('test    ', this.player.x, 'tes')
-    
     // 
     console.log('bullet created', this.bullets)
   }
@@ -118,16 +122,16 @@ function Game() {
         return bullet.isInsideScreen();
       });
 
-      this.bullets.forEach(function (bullet){
+      // this.bullets.forEach(function (bullet){
       
 
-          console.log(`hello` , bullet )
-          bullet.draw();
-        //   // bullet.shot();
+      //     console.log(`hello` , bullet )
+      //     bullet.draw();
+      //     // bullet.shot();
     
-        //   // this.bullets.push(newBullet);
+      //     // this.bullets.push(newBullet);
       
-      });
+      // });
 
 
       // CLEAR CANVAS
@@ -135,6 +139,11 @@ function Game() {
 
       this.player.draw();
 
+
+      this.bullets.forEach( function (bullet) {
+        
+        bullet.draw();
+      });
 
       this.enemies.forEach( function (enemy) {
         
