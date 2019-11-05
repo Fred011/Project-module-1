@@ -4,7 +4,7 @@ function Player(canvas, lives) {
     this.ctx = this.canvas.getContext('2d');
   
     this.lives = lives;
-    this.size = 15;
+    this.size = 10;
     this.x = canvas.width / 2;
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
@@ -52,8 +52,10 @@ function Player(canvas, lives) {
     var crossBottom = enemyBottom >= playerTop && enemyBottom <= playerBottom;
     
     var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
+
+    var crossInside = enemyLeft <= playerLeft && enemyRight >= playerRight;
   
-    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
       return true;
     }
     return false;

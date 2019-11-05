@@ -6,7 +6,7 @@ function Bullet (canvas, playerX, playerY) {
     this.ctx = this.canvas.getContext('2d');
     this.size = 25 ;
     //this.position = this.player.x;
-    this.speed = 15;
+    this.speed = 10;
     this.x = playerX + 20;
     this.y = playerY + 5;
 
