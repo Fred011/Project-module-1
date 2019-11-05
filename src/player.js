@@ -25,26 +25,55 @@ function Player(canvas, lives) {
       this.direction = this.y -= this.speed;
     }
 
-    // else if (direction === 'down') {
-    //   this.direction = this.y += this.speed;
-    // }
-
+    else if (direction === 'down') {
+      this.direction = this.y += this.speed;
+    };
   };
   
 
-   Player.prototype.didCollide = function () {
+   Player.prototype.didCollide = function (enemy) {
+
+    var playerLeft = this.x;
+    
+    var playerRight = this.x + this.size;
+    var playerTop = this.y;
+    var playerBottom = this.y + this.size;
+  
+    var enemyLeft = enemy.x;
+    var enemyRight = enemy.x + enemy.size;
+    var enemyTop = enemy.y;
+    var enemyBottom = enemy.y + enemy.size;
+  
+    // Check if the enemy intersects any of the player's sides
+    var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
+      
+    var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
+    
+    var crossBottom = enemyBottom >= playerTop && enemyBottom <= playerBottom;
+    
+    var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
+  
+    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+      return true;
+    }
+    return false;
 
    };
 
   Player.prototype.handleScreenCollision = function () {
 
+    var screenLeft = 0;
+    var screenRight = this.canvas.width;
+
+    if (this.x > screenRight) this.direction = -1;
+    else if (this.y < screenLeft) this.direction = 1;
 
 
   };
 
   Player.prototype.removeLife = function () {
 
-    this.lives -= 1
+    this.lives - 1
 
   };
 

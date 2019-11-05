@@ -1,14 +1,14 @@
 'use strict'
 
-function Bullet (canvas, playerX) {
+function Bullet (canvas, playerX, playerY) {
 
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.size = 200;
+    this.size = 10;
     //this.position = this.player.x;
-    this.speed = 5;
-    this.x = playerX;
-    this.y = (canvas.height - 1) - this.size;
+    this.speed = 15;
+    this.x = playerX + 20;
+    this.y = playerY + 5;
 
 };
 

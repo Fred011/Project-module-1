@@ -16,8 +16,8 @@ function Game() {
     this.canvas = document.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
 
-    this.livesElement = this.gameScreen.querySelector('.lives .value');
-    this.scoreElement = this.gameScreen.querySelector('.score .value');
+    this.livesElement = this.gameScreen.querySelector('#lives');
+    this.scoreElement = this.gameScreen.querySelector('#score');
   
     // Set the canvas to be same as the viewport size
     this.containerWidth = this.canvasContainer.offsetWidth;
@@ -84,7 +84,7 @@ function Game() {
   Game.prototype.createBullet = function () {
 
     //this.bullets.push(newBullet)
-    this.bullets.push(new Bullet(this.canvas, this.player.x));
+    this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y));
     console.log('test    ', this.player.x, 'tes')
     // 
     console.log('bullet created', this.bullets)
@@ -95,44 +95,32 @@ function Game() {
     var loop = function () {
       
       // CREATE NEW RANDOM ENEMIES
-      // if (Math.random() > 0.90) {
+      if (Math.random() > 0.90) {
 
-      //   var randomX = this.canvas.width * Math.random();
-      //   var newEnemy = new Enemy (this.canvas, randomX, 10)
+        var randomX = this.canvas.width * Math.random();
+        var newEnemy = new Enemy (this.canvas, randomX, 10)
 
-      //   this.enemies.push(newEnemy);
-      // }
-      // console.log(this.enemies);
+        this.enemies.push(newEnemy);
+      }
+      console.log(this.enemies);
 
-      // // CHECK COLLISIONS
-      // this.checkCollisions();
+      // CHECK COLLISIONS
+      this.checkCollisions();
 
-      // this.player.handleScreenCollision();
+      this.player.handleScreenCollision();
 
-      // //  TODO 
-      // this.enemies = this.enemies.filter(function (enemy){
-      //   enemy.updatePosition();
+      //  TODO 
+      this.enemies = this.enemies.filter(function (enemy){
+        enemy.updatePosition();
 
-      //   //  TODO check why it returns false
-      //   return enemy.isInsideTheScreen();
-      // });
+        //  TODO check why it returns false
+        return enemy.isInsideTheScreen();
+      });
 
       this.bullets = this.bullets.filter(function (bullet) {
         bullet.updatePosition();
         return bullet.isInsideScreen();
       });
-
-      // this.bullets.forEach(function (bullet){
-      
-
-      //     console.log(`hello` , bullet )
-      //     bullet.draw();
-      //     // bullet.shot();
-    
-      //     // this.bullets.push(newBullet);
-      
-      // });
-
 
       // CLEAR CANVAS
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -162,21 +150,34 @@ function Game() {
 
   };
 
-
+// COLLISIONS
   Game.prototype.checkCollisions = function () {
 
-    this.enemies.forEach(function (enemy) {
+    // this.enemies.forEach(function (enemy) {
 
-      if (this.player.didCollide(enemy)) {
-        this.player.removeLife();
+    //   if (this.player.didCollide(enemy)) {
+    //     this.player.removeLife();
+    //     this.updateGameScore();
 
-        if (this.player.lives === 0) {
-          this.gameOver();
-        };
-      };
-     
+    //     // if (this.player.lives === 0) {
+    //     //   this.gameOver();
+    //     // };
+    //   };
+    // });
 
-    }, this);
+    // this.bullets.forEach(function (bullet) {
+
+    //   if (this.enemies.tookBullet(bullet)) {
+    //     this.enemies.getKilled();
+  
+    //     if (this.lives === 0) {
+    //       this.enemy.remove();
+    //   }
+
+    // }
+    
+    
+    // }), this;
   };
 
   
@@ -184,20 +185,22 @@ function Game() {
   Game.prototype.updateGameScore = function () {
     
     this.score += 5;
-    //this.livesElement.innerHTML = this.player.lives;
+    this.livesElement.innerHTML = this.player.lives;
     //this.scoreElement.innerHTML = this.score;
     
   };
 
-  Game.prototype.passGameOverCallback = function(callback) {
+  Game.prototype.passGameOverCallback = function(gameOver) {
 
-    this.gameIsOverCallback = callback;
+    this.onGameOverCallback = gameOver;
 
 };
 
 Game.prototype.gameOver = function() {
 
   this.gameIsOver = true;
+
+  this.onGameOverCallback();
 
 };
 

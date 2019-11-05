@@ -9,6 +9,7 @@ function Enemy (canvas, x, speed) {
     this.y = 0 - this.size;
     this.x = x;
     this.speed = speed;
+    this.lives = 1;
 };
 
 Enemy.prototype.updatePosition = function () {
@@ -22,6 +23,40 @@ Enemy.prototype.isInsideTheScreen = function () {
     return this.y + (this.size / 2) < this.canvas.height;
 
 };
+
+Enemy.prototype.tookBullet = function (bullet) {
+
+    var enemyLeft = this.x;
+    
+    var enemyRight = this.x + this.size;
+    var enemyTop = this.y;
+    var enemyBottom = this.y + this.size;
+  
+    var bulletLeft = bullet.x;
+    var bulletRight = bullet.x + enemy.size;
+    var bulletTop = bullet.y;
+    var bulletBottom = bullet.y + bullet.size;
+  
+    // Check if the enemy intersects any of the player's sides
+    var crossLeft = bulletLeft <= enemyRight && bulletLeft >= enemyLeft;
+      
+    var crossRight = bulletRight >= enemyLeft && bulletRight <= enemyRight;
+    
+    var crossBottom = bulletBottom >= enemyTop && bulletBottom <= enemyBottom;
+    
+    var crossTop = bulletTop <= enemyBottom && bulletTop >= enemyTop;
+  
+    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+      return true;
+    }
+    return false;
+}
+
+Enemy.prototype.getKilled = function () {
+
+    this.lives = 0
+
+}
 
 Enemy.prototype.draw = function () {
 

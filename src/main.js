@@ -55,14 +55,58 @@ function buildDom(htmlString) {
   
     function startGame() {
       removeSplashScreen();
+      removeGameOverScreen();
   
-      var game = new Game();
+      game = new Game();
       game.gameScreen = createGameScreen();
   
       game.start();
+
+      game.passGameOverCallback(gameOver);
+
     }
   
     createSplashScreen();
   };
+
+  function gameOver () {
+
+    removeGameScreen();
+    createGameOverScreen(score);
+
+  };
+
+  function removeGameScreen() {
+
+    game.removeGameScreen();
+
+  };
+
+  function createGameOverScreen (score) {
+
+    gameOverScreen = buildDom (`
+    <main>
+        <h1>Game over</h1>
+        <p>Your score: <span></span></p>
+        <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" border="0">
+        <button>Restart</button>
+    </main>
+    `);
+
+    var button = gameOverScreen.querySelector('button');
+    button.addEventListener('click', startGame);
+
+    var span = gameOverScreen.querySelector('span');
+    span.innerText = score;
+
+    document.body.appendChild(gameOverScreen);
+  };
+
+  function removeGameOverScreen () {
+
+    // if (gameOverScreen !== undefined) {
+    //     gameOverScreen.remove();
+    //   }
+  }
 
   window.addEventListener('load', main)
