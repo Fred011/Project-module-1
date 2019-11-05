@@ -12,6 +12,7 @@ function buildDom(htmlString) {
     var game;
     var splashScreen;
     var gameOverScreen;
+    var gameScreen;
   
     function createSplashScreen() {
 
@@ -35,7 +36,7 @@ function buildDom(htmlString) {
     }
   
     function createGameScreen() {
-      var gameScreen = buildDom(`
+      gameScreen = buildDom(`
         <main class="game">
             <section id="score-section">
             <span>Score: </span><span id="score">0</span>
@@ -52,61 +53,66 @@ function buildDom(htmlString) {
   
       return gameScreen;
     }
-  
+    
     function startGame() {
-      removeSplashScreen();
-      removeGameOverScreen();
-  
-      game = new Game();
-      game.gameScreen = createGameScreen();
-  
-      game.start();
-
-      game.passGameOverCallback(gameOver);
-
+        removeSplashScreen();
+        //removeGameOverScreen();
+        
+        game = new Game();
+        game.gameScreen = createGameScreen();
+        
+        game.start();
+        
+        game.passGameOverCallback(gameOver);
+        
     }
+
+
+function removeGameScreen() {
+
+    gameScreen.remove()
   
+  };
+  
+  function gameOver (score) {
+      
+      removeGameScreen();
+      createGameOverScreen(score);
+      
+  };
+  
+  
+    function createGameOverScreen (score) {
+  
+      gameOverScreen = buildDom (`
+      <main>
+          <h1>Game over</h1>
+          <p>Your score: <span></span></p>
+          <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" border="0">
+          <button>Restart</button>
+      </main>
+      `);
+  
+      var button = gameOverScreen.querySelector('button');
+      button.addEventListener('click', startGame);
+  
+      var span = gameOverScreen.querySelector('span');
+      span.innerText = score;
+  
+      document.body.appendChild(gameOverScreen);
+    };
+    
     createSplashScreen();
-  };
+};
 
-  function gameOver () {
 
-    removeGameScreen();
-    createGameOverScreen(score);
 
-  };
 
-  function removeGameScreen() {
+//   function removeGameOverScreen () {
 
-    game.removeGameScreen();
-
-  };
-
-  function createGameOverScreen (score) {
-
-    gameOverScreen = buildDom (`
-    <main>
-        <h1>Game over</h1>
-        <p>Your score: <span></span></p>
-        <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" border="0">
-        <button>Restart</button>
-    </main>
-    `);
-
-    var button = gameOverScreen.querySelector('button');
-    button.addEventListener('click', startGame);
-
-    var span = gameOverScreen.querySelector('span');
-    span.innerText = score;
-
-    document.body.appendChild(gameOverScreen);
-  };
-
-  function removeGameOverScreen () {
-
-    // if (gameOverScreen !== undefined) {
-    //     gameOverScreen.remove();
-    //   }
-  }
+//     if (gameOverScreen !== undefined) {
+//         gameOverScreen.remove();
+//       }
+//   }
 
   window.addEventListener('load', main)

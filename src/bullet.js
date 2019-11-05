@@ -4,7 +4,7 @@ function Bullet (canvas, playerX, playerY) {
 
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.size = 10;
+    this.size = 25 ;
     //this.position = this.player.x;
     this.speed = 15;
     this.x = playerX + 20;
@@ -23,14 +23,14 @@ Bullet.prototype.updatePosition = function () {
 
    
     this.y = this.y - this.speed;
-    console.log('yyyyy', this.y, this.x);
+    //console.log('yyyyy', this.y, this.x);
 
 
 };
 
 Bullet.prototype.draw = function () {
 
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'purple';
     this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
     // fillRect(x, y, width, height)

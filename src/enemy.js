@@ -5,7 +5,7 @@ function Enemy (canvas, x, speed) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
 
-    this.size = 20;
+    this.size = 30;
     this.y = 0 - this.size;
     this.x = x;
     this.speed = speed;
@@ -26,37 +26,44 @@ Enemy.prototype.isInsideTheScreen = function () {
 
 Enemy.prototype.tookBullet = function (bullet) {
 
-    var enemyLeft = this.x;
+    var xShot = this.x < bullet.x && this.x + this.size > bullet.x
+    var yShot = this.y < bullet.y && this.y + this.size > bullet.y
+    // var xShotReversed = this.x > bullet.x && this.x + this.size < bullet.x
+    // var yShotReversed = this.y < bullet.y && this.y + this.size > bullet.y
+    //console.log('xShot', xShot, 'yShot', yShot);
+
+    //return bullet.x < this.x
+    return xShot && yShot //&& xShotReversed && yShotReversed;
+
+
+
+
+    // var enemyLeft = this.x;
     
-    var enemyRight = this.x + this.size;
-    var enemyTop = this.y;
-    var enemyBottom = this.y + this.size;
+    // var enemyRight = this.x + this.size;
+    // var enemyTop = this.y;
+    // var enemyBottom = this.y + this.size;
   
-    var bulletLeft = bullet.x;
-    var bulletRight = bullet.x + enemy.size;
-    var bulletTop = bullet.y;
-    var bulletBottom = bullet.y + bullet.size;
+    // var bulletLeft = bullet.x;
+    // var bulletRight = bullet.x + bullet.size;
+    // var bulletTop = bullet.y;
+    // var bulletBottom = bullet.y + bullet.size;
   
-    // Check if the enemy intersects any of the player's sides
-    var crossLeft = bulletLeft <= enemyRight && bulletLeft >= enemyLeft;
+    // // Check if the enemy intersects any of the player's sides
+    // var crossLeft = bulletLeft <= enemyRight && bulletLeft >= enemyLeft;
       
-    var crossRight = bulletRight >= enemyLeft && bulletRight <= enemyRight;
+    // var crossRight = bulletRight >= enemyLeft && bulletRight <= enemyRight;
     
-    var crossBottom = bulletBottom >= enemyTop && bulletBottom <= enemyBottom;
+    // var crossBottom = bulletBottom >= enemyTop && bulletBottom <= enemyBottom;
     
-    var crossTop = bulletTop <= enemyBottom && bulletTop >= enemyTop;
+    // var crossTop = bulletTop <= enemyBottom && bulletTop >= enemyTop;
   
-    if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
-      return true;
-    }
-    return false;
+    // if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+    //   return true;
+    // }
+    // return false;
 }
 
-Enemy.prototype.getKilled = function () {
-
-    this.lives = 0
-
-}
 
 Enemy.prototype.draw = function () {
 

@@ -28,8 +28,6 @@ function Game() {
     // Create new player
     this.player = new Player(this.canvas, 3);
 
-   
-
     // Add event listener for keydown movements
 
     this.handleKeydown = function (event) {
@@ -62,32 +60,23 @@ function Game() {
       else if (event.key === ' ') {
   
         event.preventDefault();
-        console.log('space')
         this.createBullet();
-        console.log('what is this', this);
       } 
     };
-
-    
-
-
 
     var gameReference = this;
 
     document.addEventListener('keydown', this.handleKeydown.bind(gameReference))
   
     // Start the game loop
-  
     this.startLoop();
   };
 
   Game.prototype.createBullet = function () {
 
-    //this.bullets.push(newBullet)
+    //CREATE A BULLET
     this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y));
-    console.log('test    ', this.player.x, 'tes')
-    // 
-    console.log('bullet created', this.bullets)
+    //console.log('bullet created', this.bullets)
   }
   
   Game.prototype.startLoop = function() {
@@ -95,25 +84,25 @@ function Game() {
     var loop = function () {
       
       // CREATE NEW RANDOM ENEMIES
-      if (Math.random() > 0.90) {
+      if (Math.random() > 0.97) {
 
         var randomX = this.canvas.width * Math.random();
-        var newEnemy = new Enemy (this.canvas, randomX, 10)
+        var newEnemy = new Enemy (this.canvas, randomX, 1)
 
         this.enemies.push(newEnemy);
       }
-      console.log(this.enemies);
+      //console.log(this.enemies);
 
       // CHECK COLLISIONS
       this.checkCollisions();
 
+      this.checkBulletCollisions();
+
       this.player.handleScreenCollision();
 
-      //  TODO 
       this.enemies = this.enemies.filter(function (enemy){
         enemy.updatePosition();
 
-        //  TODO check why it returns false
         return enemy.isInsideTheScreen();
       });
 
@@ -129,20 +118,18 @@ function Game() {
 
 
       this.bullets.forEach( function (bullet) {
-        
         bullet.draw();
       });
 
       this.enemies.forEach( function (enemy) {
-        
         enemy.draw();
       });
-     // console.log(this.enemies);
+
       if (!this.gameIsOver) {
         window.requestAnimationFrame(loop);
       };
   
-      this.updateGameScore();
+      this.updateGameStat();
 
     }.bind(this);
 
@@ -151,48 +138,50 @@ function Game() {
   };
 
 // COLLISIONS
-  Game.prototype.checkCollisions = function () {
+  Game.prototype.checkCollisions = function (player) {
 
-    // this.enemies.forEach(function (enemy) {
+    var player = this.player;
 
-    //   if (this.player.didCollide(enemy)) {
-    //     this.player.removeLife();
-    //     this.updateGameScore();
+    this.enemies.forEach(function (enemy) {
 
-    //     // if (this.player.lives === 0) {
-    //     //   this.gameOver();
-    //     // };
-    //   };
-    // });
+      if (player.didCollide(enemy)) {
+        player.removeLife();
+        //this.updateGameStat();
 
-    // this.bullets.forEach(function (bullet) {
-
-    //   if (this.enemies.tookBullet(bullet)) {
-    //     this.enemies.getKilled();
-  
-    //     if (this.lives === 0) {
-    //       this.enemy.remove();
-    //   }
-
-    // }
-    
-    
-    // }), this;
+          if (player.lives === 0) {
+            this.gameOver();
+          };
+      };
+    }, this);
   };
 
+  Game.prototype.checkBulletCollisions = function () {
+    this.bullets.forEach(function (bullet){
+      this.enemies.forEach(function (enemy) {
+        if (enemy.tookBullet(bullet)) {
+          enemy.y = 1000;
+        }
+      });
+    }, this)
+  };
+
+
   
 
-  Game.prototype.updateGameScore = function () {
+  Game.prototype.updateGameStat = function () {
     
     this.score += 5;
     this.livesElement.innerHTML = this.player.lives;
-    //this.scoreElement.innerHTML = this.score;
+    this.scoreElement.innerHTML = this.score;
     
   };
 
-  Game.prototype.passGameOverCallback = function(gameOver) {
+  //NEW TEST REMOVE UPDATE LIFE
+  Game.prototype.updateGameLife
 
-    this.onGameOverCallback = gameOver;
+  Game.prototype.passGameOverCallback = function(callback) {
+
+    this.onGameOverCallback = callback;
 
 };
 
@@ -200,12 +189,13 @@ Game.prototype.gameOver = function() {
 
   this.gameIsOver = true;
 
-  this.onGameOverCallback();
+  console.log('GAME IS OVER');
+  this.onGameOverCallback(this.score);
 
 };
 
-Game.prototype.removeGameScreen = function() {
+// Game.prototype.removeGameScreen = function() {
 
-  this.gameScreen.remove();
+//   this.gameScreen.remove();
 
-};
+// };
