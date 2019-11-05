@@ -94,3 +94,13 @@ canvas {
     margin-left: auto;
     margin-right: auto;
 }
+
+#game-over {
+    margin-top: 30%;
+}
+
+.final-score {
+    margin-top: 50%;
+    margin-left: 40%;
+    margin-right: 40%;
+}

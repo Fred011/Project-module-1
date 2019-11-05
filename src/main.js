@@ -85,10 +85,11 @@ function main() {
 
     gameOverScreen = buildDom (`
     <main>
-        <h1>Game over</h1>
-        <p>Your score: <span></span></p>
-        <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" border="0">
-        <button>Restart</button>
+        <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" id="game-over">
+        <section class="final-score">
+            <p>Your score: <span></span></p>
+        <section>
+        <button id="restart-btn">Restart</button>
     </main>
     `);
 
