@@ -194,8 +194,8 @@ Game.prototype.gameOver = function() {
 
 };
 
-// Game.prototype.removeGameScreen = function() {
+Game.prototype.removeGameScreen = function() {
 
-//   this.gameScreen.remove();
+  this.gameScreen.remove();
 
-// };
+};
