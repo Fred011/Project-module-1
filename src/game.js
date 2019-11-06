@@ -84,7 +84,7 @@ function Game() {
     var loop = function () {
       
       // CREATE NEW RANDOM ENEMIES
-      if (Math.random() > 0.97) {
+      if (Math.random() > 0.99) {
 
         var randomX = this.canvas.width * Math.random();
         var newEnemy = new Enemy (this.canvas, randomX, 1)
@@ -101,9 +101,10 @@ function Game() {
       
       this.enemies = this.enemies.filter(function (enemy){
         enemy.updatePosition();
+        this.followPlayer(enemy);
         
         return enemy.isInsideTheScreen();
-      });
+      }, this);
       
       this.bullets = this.bullets.filter(function (bullet) {
         bullet.updatePosition();
@@ -119,7 +120,10 @@ function Game() {
       this.bullets.forEach( function (bullet) {
         bullet.draw();
       });
+
       this.checkBulletCollisions();
+
+      this.enemyReachBottom();
 
       this.enemies.forEach( function (enemy) {
         enemy.draw();
@@ -157,8 +161,6 @@ function Game() {
   
   Game.prototype.checkBulletCollisions = function () {
 
-   // var score = this.score
-
     this.bullets.forEach(function (bullet){
       this.enemies.forEach(function (enemy) {
         if (enemy.tookBullet(bullet)) {
@@ -170,9 +172,35 @@ function Game() {
     }, this)
   };
 
+  Game.prototype.enemyReachBottom = function (player) {
+
+    var player = this.player;
+
+      this.enemies.forEach(function (enemy) {
+        if (enemy.bottomScreenCollision(screen)) {
+          player.removeLife();
+        }
+      });
+    };
+
+    Game.prototype.followPlayer = function (enemy) {
+
+      console.log('check following');
+      if (enemy.x < this.player.x) {
+        enemy.x += 0.2
+      } else {
+        enemy.x -= 0.2
+      };
+
+      if (enemy.y > this.player.y) {
+        enemy.y -= 1.7
+      } else {
+        enemy.y += 0.3
+      };
+    };
+
   Game.prototype.updateGameStat = function () {
     
-    //this.score += 5;
     this.livesElement.innerHTML = this.player.lives;
     this.scoreElement.innerHTML = this.score;
     

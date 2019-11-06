@@ -51,7 +51,8 @@ table {
 body {
     display: flex;
     justify-content: center;
-    background: url(http://www.graciaviva.cat/png/big/13/139005_pixel-art-space-background.jpg);
+    /*background: url(http://www.graciaviva.cat/png/big/13/139005_pixel-art-space-background.jpg);*/
+    background: url(../images/spaceBackground.png);
     background-repeat: no-repeat;
     background-size: 1950px;
     color: white;
@@ -81,10 +82,6 @@ body {
 
 #title {
     margin-top: 20%;
-}
-
-canvas {
-    border: 1px solid red;
 }
 
 #score-section {

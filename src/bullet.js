@@ -7,7 +7,7 @@ function Bullet (canvas, playerX, playerY) {
     this.size = 25 ;
     //this.position = this.player.x;
     this.speed = 10;
-    this.x = playerX + 20;
+    this.x = playerX + 12;
     this.y = playerY + 5;
 
 };
@@ -30,10 +30,10 @@ Bullet.prototype.updatePosition = function () {
 
 Bullet.prototype.draw = function () {
 
-    this.ctx.fillStyle = 'purple';
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    var image = new Image;
+    image.src = '../images/laser beam.png';
 
-    // fillRect(x, y, width, height)
+    this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 }  
 
 Bullet.prototype.isInsideScreen = function () {

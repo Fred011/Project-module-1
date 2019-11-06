@@ -4,7 +4,7 @@ function Player(canvas, lives) {
     this.ctx = this.canvas.getContext('2d');
   
     this.lives = lives;
-    this.size = 50;
+    this.size = 60;
     this.x = canvas.width / 2;
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
@@ -86,8 +86,12 @@ function Player(canvas, lives) {
 
   Player.prototype.draw = function() {
 
+    var image = new Image;
+    image.src = '../images/spaceship 3.png';
+
     this.ctx.fillStyle = 'blue';
+    this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
     // fillRect(x, y, width, height)
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    //this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
   };

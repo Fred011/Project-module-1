@@ -5,7 +5,7 @@ function Enemy (canvas, x, speed) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
 
-    this.size = 30;
+    this.size = 40;
     this.y = 0 - this.size;
     this.x = x;
     this.speed = speed;
@@ -51,14 +51,46 @@ Enemy.prototype.tookBullet = function (bullet) {
       return true;
     }
     return false;
+
+}
+
+Enemy.prototype.bottomScreenCollision = function (screen) {
+
+    // var enemyLeft = this.x;
+    // var enemyRight = this.x + this.size;
+    // var enemyTop = this.y;
+    var enemyBottom = this.y + this.size;
   
+    // var screenLeft = screen.x;
+    // var screenRight = screen.x + screen.size;
+    // var screenTop = screen.y;
+    var screenBottom = screen.y + screen.size;
+  
+    // Check if the screen intersects any of the enemy's sides
+    // var crossLeft = screenLeft <= enemyRight && screenLeft >= enemyLeft;
+      
+    // var crossRight = screenRight >= enemyLeft && screenRight <= enemyRight;
+    
+    var crossBottom = enemyBottom > screenBottom;
+    
+    // var crossTop = screenTop <= enemyBottom && screenTop >= enemyTop;
+
+    // var crossInside = screenLeft <= enemyLeft && screenRight >= enemyRight;
+  
+    if (crossBottom) {
+        console.log('bottom reached')
+      return true;
+    }
+    return false;
 
 }
 
 
 Enemy.prototype.draw = function () {
 
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+    var image = new Image;
+    image.src = '../images/spaceship 2.png';
+
+    this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 
 };
