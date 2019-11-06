@@ -90,13 +90,20 @@ function main() {
             <p>Your score: <span></span></p>
         <section>
         <button id="restart-btn">Restart</button>
+        <button id="menu-btn">Menu</button>
     </main>
     `);
 
-    var button = gameOverScreen.querySelector('button');
+    var button = gameOverScreen.querySelector('#restart-btn');
     button.addEventListener('click', function() {
          removeGameOverScreen();
          startGame();
+    });
+
+    var button = gameOverScreen.querySelector('#menu-btn');
+    button.addEventListener('click', function() {
+         removeGameOverScreen();
+         createSplashScreen();
     });
 
     var span = gameOverScreen.querySelector('span');

@@ -26,14 +26,6 @@ Enemy.prototype.isInsideTheScreen = function () {
 
 Enemy.prototype.tookBullet = function (bullet) {
 
-    // var xShot = this.x < bullet.x && this.x + this.size > bullet.x
-    // var yShot = this.y < bullet.y && this.y + this.size > bullet.y;
-    // // var other = bullet.x + bullet.size > this.x && bullet.x < this.x + this.size;
-
-    // console.log('touched');
-    // return xShot && yShot && other
-
-
     var enemyLeft = this.x;
     var enemyRight = this.x + this.size;
     var enemyTop = this.y;
