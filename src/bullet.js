@@ -1,14 +1,14 @@
 'use strict'
 
-function Bullet (canvas, playerX) {
+function Bullet (canvas, playerX, playerY) {
 
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-    this.size = 200;
+    this.size = 20 ;
     //this.position = this.player.x;
-    this.speed = 5;
-    this.x = playerX;
-    this.y = (canvas.height - 1) - this.size;
+    this.speed = 10;
+    this.x = playerX + 10;
+    this.y = playerY + 5;
 
 };
 
@@ -23,14 +23,14 @@ Bullet.prototype.updatePosition = function () {
 
    
     this.y = this.y - this.speed;
-    console.log('yyyyy', this.y, this.x);
+    //console.log('yyyyy', this.y, this.x);
 
 
 };
 
 Bullet.prototype.draw = function () {
 
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'purple';
     this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
     // fillRect(x, y, width, height)
