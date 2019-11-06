@@ -4,7 +4,7 @@ function Player(canvas, lives) {
     this.ctx = this.canvas.getContext('2d');
   
     this.lives = lives;
-    this.size = 10;
+    this.size = 50;
     this.x = canvas.width / 2;
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
@@ -34,7 +34,6 @@ function Player(canvas, lives) {
    Player.prototype.didCollide = function (enemy) {
 
     var playerLeft = this.x;
-    
     var playerRight = this.x + this.size;
     var playerTop = this.y;
     var playerBottom = this.y + this.size;
@@ -64,11 +63,17 @@ function Player(canvas, lives) {
 
   Player.prototype.handleScreenCollision = function () {
 
-    // var screenLeft = 0;
-    // var screenRight = this.canvas.width;
+    var screenLeft = 0;
+    var screenRight = this.canvas.width;
 
-    // if (this.x > screenRight) this.direction = -1;
-    // else if (this.y < screenLeft) this.direction = 1;
+    if (this.x <= screenLeft) {
+      this.x = this.x + 7;
+      console.log('left side')
+    } 
+    else if (this.x + this.size >= screenRight) {
+      this.x = this.x - 7;
+      console.log('right side');
+    } 
 
 
   };
@@ -76,7 +81,6 @@ function Player(canvas, lives) {
   Player.prototype.removeLife = function () {
 
     this.lives = this.lives -= 1
-    console.log('lives - 1');
     
   };
 
