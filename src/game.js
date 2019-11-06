@@ -161,6 +161,7 @@ function Game() {
       this.enemies.forEach(function (enemy) {
         if (enemy.tookBullet(bullet)) {
           enemy.y = 1000;
+          bullet.y = 0 - bullet.size;
         }
       });
     }, this)
