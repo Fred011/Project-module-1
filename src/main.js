@@ -18,7 +18,12 @@ function main() {
 
     splashScreen = buildDom(`
      <main>
-          <h1><img src="https://fontmeme.com/permalink/191103/6c19395673d1c662e306015215c8acc7.png" alt="tiny-islanders-font" id="title"></h1>
+        <section id="title1">
+          <img src="https://fontmeme.com/permalink/191106/28ba4c65f21e2c98c5d61ec48dc1f8d5.png" alt="tiny-islanders-font">
+        </section>
+        <section id="title2">
+          <img src="https://fontmeme.com/permalink/191106/4227d3afa67613e0a7f49462c226676c.png" alt="tiny-islanders-font">
+        </section>
           <button class="start-btn">Start Game</button>
      </main>
     `);

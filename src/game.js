@@ -188,7 +188,7 @@ function Game() {
         enemy.y = 1000;
         
         if (player.lives === 0) {
-          return this.gameOver();
+          this.gameOver();
         };
       };
     }, this);
@@ -199,10 +199,7 @@ function Game() {
     var player = this.player;
     
     this.boss.forEach(function (boss) {
-      
-      if (player.didCollideBoss(boss)) {
-          return this.gameOver()
-      };
+      player.didCollide(boss);
     }, this);
   };
   

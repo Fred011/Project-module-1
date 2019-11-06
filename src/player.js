@@ -85,7 +85,7 @@ function Player(canvas, lives) {
     var crossInside = bossLeft <= playerLeft && bossRight >= playerRight;
   
     if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
-      return true;
+      return gameOver();
     }
     return false;
 
