@@ -141,45 +141,43 @@ function Game() {
   Game.prototype.checkCollisions = function (player) {
 
     var player = this.player;
-
+    
     this.enemies.forEach(function (enemy) {
-
+      
       if (player.didCollide(enemy)) {
         player.removeLife();
-        enemy.y = 1000
-        //this.updateGameStat();
-
-          if (player.lives === 0) {
-            this.gameOver();
-          };
+        enemy.y = 1000;
+        
+        if (player.lives === 0) {
+          this.gameOver();
+        };
       };
     }, this);
   };
-
+  
   Game.prototype.checkBulletCollisions = function () {
+
+   // var score = this.score
+
     this.bullets.forEach(function (bullet){
       this.enemies.forEach(function (enemy) {
         if (enemy.tookBullet(bullet)) {
           enemy.y = 1000;
           bullet.y = 0 - bullet.size;
+          this.score += 100;
         }
-      });
+      }, this);
     }, this)
   };
 
-
-  
-
   Game.prototype.updateGameStat = function () {
     
-    this.score += 5;
+    //this.score += 5;
     this.livesElement.innerHTML = this.player.lives;
     this.scoreElement.innerHTML = this.score;
     
   };
 
-  //NEW TEST REMOVE UPDATE LIFE
-  Game.prototype.updateGameLife
 
   Game.prototype.passGameOverCallback = function(callback) {
 
