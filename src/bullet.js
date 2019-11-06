@@ -31,7 +31,7 @@ Bullet.prototype.updatePosition = function () {
 Bullet.prototype.draw = function () {
 
     var image = new Image;
-    image.src = '../images/laser beam.png';
+    image.src = './images/laser beam.png';
 
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 }  

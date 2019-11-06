@@ -89,7 +89,7 @@ Enemy.prototype.bottomScreenCollision = function (screen) {
 Enemy.prototype.draw = function () {
 
     var image = new Image;
-    image.src = '../images/spaceship 2.png';
+    image.src = './images/spaceship 2.png';
 
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 

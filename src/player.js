@@ -87,7 +87,7 @@ function Player(canvas, lives) {
   Player.prototype.draw = function() {
 
     var image = new Image;
-    image.src = '../images/spaceship 3.png';
+    image.src = './images/spaceship 3.png';
 
     this.ctx.fillStyle = 'blue';
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
