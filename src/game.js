@@ -96,30 +96,30 @@ function Game() {
       // CHECK COLLISIONS
       this.checkCollisions();
 
-      this.checkBulletCollisions();
-
+      
       this.player.handleScreenCollision();
-
+      
       this.enemies = this.enemies.filter(function (enemy){
         enemy.updatePosition();
-
+        
         return enemy.isInsideTheScreen();
       });
-
+      
       this.bullets = this.bullets.filter(function (bullet) {
         bullet.updatePosition();
         return bullet.isInsideScreen();
       });
-
+      
       // CLEAR CANVAS
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+      
       this.player.draw();
-
-
+      
+      
       this.bullets.forEach( function (bullet) {
         bullet.draw();
       });
+      this.checkBulletCollisions();
 
       this.enemies.forEach( function (enemy) {
         enemy.draw();
@@ -146,6 +146,7 @@ function Game() {
 
       if (player.didCollide(enemy)) {
         player.removeLife();
+        enemy.y = 1000
         //this.updateGameStat();
 
           if (player.lives === 0) {

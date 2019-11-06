@@ -80,7 +80,7 @@ function Player(canvas, lives) {
 
   Player.prototype.removeLife = function () {
 
-    this.lives = this.lives -= 1
+    this.lives -= 1
     
   };
 

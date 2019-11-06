@@ -27,41 +27,13 @@ Enemy.prototype.isInsideTheScreen = function () {
 Enemy.prototype.tookBullet = function (bullet) {
 
     var xShot = this.x < bullet.x && this.x + this.size > bullet.x
-    var yShot = this.y < bullet.y && this.y + this.size > bullet.y
-    // var xShotReversed = this.x > bullet.x && this.x + this.size < bullet.x
-    // var yShotReversed = this.y < bullet.y && this.y + this.size > bullet.y
-    //console.log('xShot', xShot, 'yShot', yShot);
+    var yShot = this.y < bullet.y && this.y + this.size > bullet.y;
+    // var other = bullet.x + bullet.size > this.x && bullet.x < this.x + this.size;
 
-    //return bullet.x < this.x
-    return xShot && yShot //&& xShotReversed && yShotReversed;
-
-
-
-
-    // var enemyLeft = this.x;
-    
-    // var enemyRight = this.x + this.size;
-    // var enemyTop = this.y;
-    // var enemyBottom = this.y + this.size;
+    console.log('touched');
+    return xShot && yShot && other
   
-    // var bulletLeft = bullet.x;
-    // var bulletRight = bullet.x + bullet.size;
-    // var bulletTop = bullet.y;
-    // var bulletBottom = bullet.y + bullet.size;
-  
-    // // Check if the enemy intersects any of the player's sides
-    // var crossLeft = bulletLeft <= enemyRight && bulletLeft >= enemyLeft;
-      
-    // var crossRight = bulletRight >= enemyLeft && bulletRight <= enemyRight;
-    
-    // var crossBottom = bulletBottom >= enemyTop && bulletBottom <= enemyBottom;
-    
-    // var crossTop = bulletTop <= enemyBottom && bulletTop >= enemyTop;
-  
-    // if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
-    //   return true;
-    // }
-    // return false;
+
 }
 
 
