@@ -4,6 +4,7 @@ function Game() {
     this.enemies = [];
     this.player = null;
     this.bullets = [];
+    this.boss = [];
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
@@ -75,8 +76,23 @@ function Game() {
   Game.prototype.createBullet = function () {
 
     //CREATE A BULLET
-    this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y));
+    this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y, this.player.direction));
     //console.log('bullet created', this.bullets)
+  }
+
+  //CREATE BOSS
+  Game.prototype.createBoss = function () {
+
+    setTimeout(() => {
+
+        var newBoss = new Boss(this.canvas, 2);
+
+        this.boss.push(newBoss);
+        
+        console.log('BOSSSSSS');
+
+    }, 1000); // will start after 5000 m/s;
+      
   }
   
   Game.prototype.startLoop = function() {
@@ -91,11 +107,15 @@ function Game() {
 
         this.enemies.push(newEnemy);
       }
+
+      //GENERATE BOSS
+      this.createBoss();
       //console.log(this.enemies);
 
+      
+      
       // CHECK COLLISIONS
       this.checkCollisions();
-
       
       this.player.handleScreenCollision();
       
@@ -117,16 +137,31 @@ function Game() {
       this.player.draw();
       
       
+      this.boss.filter(function (boss) {
+        boss.draw();
+        console.log('should draw badass boss');
+      })
+      
+      this.boss = this.boss.filter(function (boss) {
+
+        boss.updatePosition();
+        
+        return boss.isInsideTheScreen();
+
+      }, this);
+
       this.bullets.forEach( function (bullet) {
         bullet.draw();
       });
 
       this.checkBulletCollisions();
 
+      this.bossCollisions();
+
       this.enemyReachBottom();
 
       this.enemies.forEach( function (enemy) {
-        enemy.draw();
+          enemy.draw();
       });
 
       if (!this.gameIsOver) {
@@ -153,8 +188,20 @@ function Game() {
         enemy.y = 1000;
         
         if (player.lives === 0) {
-          this.gameOver();
+          return this.gameOver();
         };
+      };
+    }, this);
+  };
+
+  Game.prototype.bossCollisions = function (player) {
+
+    var player = this.player;
+    
+    this.boss.forEach(function (boss) {
+      
+      if (player.didCollideBoss(boss)) {
+          return this.gameOver()
       };
     }, this);
   };

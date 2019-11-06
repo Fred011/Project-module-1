@@ -61,10 +61,43 @@ function Player(canvas, lives) {
 
    };
 
+   Player.prototype.didCollideBoss = function (boss) {
+
+    var playerLeft = this.x;
+    var playerRight = this.x + this.size;
+    var playerTop = this.y;
+    var playerBottom = this.y + this.size;
+  
+    var bossLeft = boss.x;
+    var bossRight = boss.x + boss.size;
+    var bossTop = boss.y;
+    var bossBottom = boss.y + boss.size;
+  
+    // Check if the boss intersects any of the player's sides
+    var crossLeft = bossLeft <= playerRight && bossLeft >= playerLeft;
+      
+    var crossRight = bossRight >= playerLeft && bossRight <= playerRight;
+    
+    var crossBottom = bossBottom >= playerTop && bossBottom <= playerBottom;
+    
+    var crossTop = bossTop <= playerBottom && bossTop >= playerTop;
+
+    var crossInside = bossLeft <= playerLeft && bossRight >= playerRight;
+  
+    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
+      return true;
+    }
+    return false;
+
+   };
+
   Player.prototype.handleScreenCollision = function () {
 
     var screenLeft = 0;
     var screenRight = this.canvas.width;
+
+    var screenTop = 0;
+    var screenBottom = this.canvas.height;
 
     if (this.x <= screenLeft) {
       this.x = this.x + 7;
@@ -74,6 +107,12 @@ function Player(canvas, lives) {
       this.x = this.x - 7;
       console.log('right side');
     } 
+    else if (this.y <= screenTop) {
+      this.y = this.y + 7;
+    }
+    else if (this.y + this.size >= screenBottom) {
+        this.y = this.y - 7;
+      };
 
 
   };

@@ -78,7 +78,6 @@ Enemy.prototype.bottomScreenCollision = function (screen) {
     // var crossInside = screenLeft <= enemyLeft && screenRight >= enemyRight;
   
     if (crossBottom) {
-        console.log('bottom reached')
       return true;
     }
     return false;
