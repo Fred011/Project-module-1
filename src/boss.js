@@ -94,7 +94,7 @@ Boss.prototype.bottomScreenCollision = function (screen) {
 Boss.prototype.draw = function () {
 
     var image = new Image;
-    image.src = '../images/boss3.png';
+    image.src = './images/boss3.png';
 
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 

@@ -37,26 +37,26 @@ Bullet.prototype.draw = function () {
     if (this.direction === 'up') {
       
         var image = new Image;
-        image.src = '../images/laserup.png';
+        image.src = './images/laserup.png';
         
       }
   
       else if (this.direction === 'left') {
   
         var image = new Image;
-        image.src = '../images/laserleft.png';
+        image.src = './images/laserleft.png';
         
       }
       else if (this.direction === 'right') {
   
         var image = new Image;
-        image.src = '../images/laserright.png';
+        image.src = './images/laserright.png';
         
       }
       else if (this.direction === 'down') {
   
         var image = new Image;
-        image.src = '../images/laserdown.png';
+        image.src = './images/laserdown.png';
         
       }
 

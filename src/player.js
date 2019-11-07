@@ -89,7 +89,7 @@ function Player(canvas, lives) {
 
     var crossInside = bossLeft <= playerLeft && bossRight >= playerRight;
   
-    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
+    if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {      q
       return true;
     }
     return false;
@@ -133,26 +133,26 @@ function Player(canvas, lives) {
     if (this.directionName === 'up') {
       
       var image = new Image;
-      image.src = '../images/spaceshipup.png';
+      image.src = './images/spaceshipup.png';
       
     }
 
     else if (this.directionName === 'left') {
 
       var image = new Image;
-      image.src = '../images/spaceshipleft.png';
+      image.src = './images/spaceshipleft.png';
       
     }
     else if (this.directionName === 'right') {
 
       var image = new Image;
-      image.src = '../images/spaceshipright.png';
+      image.src = './images/spaceshipright.png';
       
     }
     else if (this.directionName === 'down') {
 
       var image = new Image;
-      image.src = '../images/spaceshipdown.png';
+      image.src = './images/spaceshipdown.png';
       
     }
 
