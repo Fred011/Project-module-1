@@ -8,6 +8,7 @@ function Player(canvas, lives) {
     this.x = canvas.width / 2;
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
+    this.directionName = `up`;
     this.speed = 30;
   }
 
@@ -15,18 +16,22 @@ function Player(canvas, lives) {
 
     if(direction === 'left') {
       this.direction = this.x -= this.speed;
+      this.directionName = `left`
     }
 
     else if (direction === 'right') {
       this.direction = this.x += this.speed;
+      this.directionName = 'right'
     }
 
     else if (direction === 'up') {
       this.direction = this.y -= this.speed;
+      this.directionName = `up`
     }
 
     else if (direction === 'down') {
       this.direction = this.y += this.speed;
+      this.directionName = `down`
     };
   };
   
@@ -85,7 +90,7 @@ function Player(canvas, lives) {
     var crossInside = bossLeft <= playerLeft && bossRight >= playerRight;
   
     if ((crossInside || crossLeft || crossRight) && (crossTop || crossBottom)) {
-      return gameOver();
+      return gameOver;
     }
     return false;
 
@@ -125,12 +130,32 @@ function Player(canvas, lives) {
 
   Player.prototype.draw = function() {
 
-    var image = new Image;
-    image.src = './images/spaceship 3.png';
+    if (this.directionName === 'up') {
+      
+      var image = new Image;
+      image.src = '../images/spaceshipup.png';
+      
+    }
 
-    this.ctx.fillStyle = 'blue';
+    else if (this.directionName === 'left') {
+
+      var image = new Image;
+      image.src = '../images/spaceshipleft.png';
+      
+    }
+    else if (this.directionName === 'right') {
+
+      var image = new Image;
+      image.src = '../images/spaceshipright.png';
+      
+    }
+    else if (this.directionName === 'down') {
+
+      var image = new Image;
+      image.src = '../images/spaceshipdown.png';
+      
+    }
+
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
-    // fillRect(x, y, width, height)
-    //this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
   };

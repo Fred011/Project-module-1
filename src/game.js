@@ -91,7 +91,7 @@ function Game() {
         
         console.log('BOSSSSSS');
 
-    }, 1000); // will start after 5000 m/s;
+    }, 5000); // will start after 5000 m/s;
       
   }
   
@@ -130,18 +130,7 @@ function Game() {
         bullet.updatePosition();
         return bullet.isInsideScreen();
       });
-      
-      // CLEAR CANVAS
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      
-      this.player.draw();
-      
-      
-      this.boss.filter(function (boss) {
-        boss.draw();
-        console.log('should draw badass boss');
-      })
-      
+
       this.boss = this.boss.filter(function (boss) {
 
         boss.updatePosition();
@@ -149,6 +138,17 @@ function Game() {
         return boss.isInsideTheScreen();
 
       }, this);
+
+      
+      // CLEAR CANVAS
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      
+      this.player.draw();
+      
+      this.boss.filter(function (boss) {
+        boss.draw();
+        console.log('should draw badass boss');
+      })
 
       this.bullets.forEach( function (bullet) {
         bullet.draw();
