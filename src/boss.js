@@ -5,11 +5,11 @@ function Boss (canvas, randomX, lives , speed) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
 
+    this.size = 300;
     this.speed = speed;
-    this.y = 0;
+    this.y = 0 - this.size;
     this.x = randomX;
     this.lives = lives;
-    this.size = 300;
 
 }; 
 

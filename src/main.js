@@ -108,6 +108,7 @@ function main() {
     </main>
     `);
 
+    mainMusic.pause();
     splashSound.play();
 
     var button = gameOverScreen.querySelector('#restart-btn');

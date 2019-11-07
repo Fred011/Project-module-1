@@ -51,6 +51,7 @@ table {
 body {
     display: flex;
     justify-content: center;
+    font-size: 16px;
 
     font-family: DisposableDroidBB;
     background: url(../images/spaceBackground.png);
@@ -66,7 +67,7 @@ button {
 
 .start-btn {
     display: block;
-    background-color: rgba(246, 242, 8, 0.835);
+    background-color: rgb(246, 242, 8);
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;

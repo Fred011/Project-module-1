@@ -150,6 +150,7 @@ function Game() {
       
       this.boss.filter(function (boss) {
         boss.draw();
+        console.log('BOSS YYYYYYY', boss.y)
       })
 
       this.bullets.forEach( function (bullet) {
