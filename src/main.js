@@ -14,7 +14,8 @@ function main() {
   var gameOverScreen;
   var gameScreen;
   var laser = document.getElementById('laser');
-  var splashSound = document.getElementById('splashSound')
+  var splashSound = document.getElementById('splashSound');
+  var mainMusic = document.getElementById('gameMusic');
 
   function createSplashScreen() {
 
@@ -68,6 +69,8 @@ function main() {
   function startGame() {
       removeSplashScreen();
       //removeGameOverScreen();
+
+      gameMusic.play();
       
       game = new Game();
       game.gameScreen = createGameScreen();
