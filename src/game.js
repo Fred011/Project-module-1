@@ -8,6 +8,7 @@ function Game() {
     this.gameIsOver = false;
     this.gameScreen = null;
     this.score = 0;
+    this.directionPlayer = `up`;
   }
   
 
@@ -29,6 +30,9 @@ function Game() {
     // Create new player
     this.player = new Player(this.canvas, 3);
 
+        // //GENERATE BOSS
+      this.createBoss();
+
     // Add event listener for keydown movements
 
     this.handleKeydown = function (event) {
@@ -37,25 +41,27 @@ function Game() {
   
           console.log('LEFT');
           this.player.setDirection('left')
-  
+          this.directionPlayer = `left`;
       }
       else if (event.key === 'ArrowRight') {
   
           console.log('RIGHT');
           this.player.setDirection('right');
-  
+          this.directionPlayer = `right`
       }
 
       // TO KEEP FOR THE BACKLOG MOVEMENTS
       else if (event.key === 'ArrowUp') {
         console.log('UP');
         this.player.setDirection('up')
+        this.directionPlayer = `up`
       }
       
       // TO KEEP FOR THE BACKLOG MOVEMENTS
       else if (event.key === 'ArrowDown') {
         console.log('DOWN');
-        this.player.setDirection('down')
+        this.player.setDirection('down');
+        this.directionPlayer = `down`;
       }
 
       else if (event.key === ' ') {
@@ -76,20 +82,18 @@ function Game() {
   Game.prototype.createBullet = function () {
 
     //CREATE A BULLET
-    this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y, this.player.direction));
+    this.bullets.push(new Bullet(this.canvas, this.player.x, this.player.y, this.directionPlayer));
     //console.log('bullet created', this.bullets)
   }
 
   //CREATE BOSS
   Game.prototype.createBoss = function () {
 
-    setTimeout(() => {
+    setInterval(() => {
 
-        var newBoss = new Boss(this.canvas, 2);
-
+        var randomX = this.canvas.width * Math.random();
+        var newBoss = new Boss(this.canvas, randomX, 5, 1);
         this.boss.push(newBoss);
-        
-        console.log('BOSSSSSS');
 
     }, 5000); // will start after 5000 m/s;
       
@@ -107,12 +111,6 @@ function Game() {
 
         this.enemies.push(newEnemy);
       }
-
-      //GENERATE BOSS
-      this.createBoss();
-      //console.log(this.enemies);
-
-      
       
       // CHECK COLLISIONS
       this.checkCollisions();
@@ -147,7 +145,6 @@ function Game() {
       
       this.boss.filter(function (boss) {
         boss.draw();
-        console.log('should draw badass boss');
       })
 
       this.bullets.forEach( function (bullet) {
@@ -157,6 +154,8 @@ function Game() {
       this.checkBulletCollisions();
 
       this.bossCollisions();
+
+      this.checkBulletCollisionsBoss();
 
       this.enemyReachBottom();
 
@@ -199,7 +198,9 @@ function Game() {
     var player = this.player;
     
     this.boss.forEach(function (boss) {
-      player.didCollide(boss);
+      if (player.didCollideBoss(boss)) {
+        this.gameOver();
+      }
     }, this);
   };
   
@@ -212,6 +213,26 @@ function Game() {
           bullet.y = 0 - bullet.size;
           this.score += 100;
         }
+      }, this);
+    }, this)
+  };
+
+  Game.prototype.checkBulletCollisionsBoss = function () {
+
+    this.bullets.forEach(function (bullet){
+      this.boss.forEach(function (boss) {
+        if (boss.bossTouched(bullet)) {
+          console.log('BOSS LIVES - 1')
+          console.log(boss.lives)
+          boss.removeLife()
+          bullet.y = 0 - bullet.size;
+          this.score += 300;
+        };
+        
+        if (boss.lives == 0) {
+          boss.y = 1000;
+          this.score += 2000
+        };
       }, this);
     }, this)
   };
@@ -229,11 +250,10 @@ function Game() {
 
     Game.prototype.followPlayer = function (enemy) {
 
-      console.log('check following');
       if (enemy.x < this.player.x) {
-        enemy.x += 0.2
+        enemy.x += 0.5
       } else {
-        enemy.x -= 0.2
+        enemy.x -= 0.5
       };
 
       if (enemy.y > this.player.y) {
@@ -261,7 +281,6 @@ Game.prototype.gameOver = function() {
 
   this.gameIsOver = true;
 
-  console.log('GAME IS OVER');
   this.onGameOverCallback(this.score);
 
 };

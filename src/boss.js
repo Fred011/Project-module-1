@@ -1,17 +1,22 @@
 'use strict'
 
-function Boss (canvas, speed) {
+function Boss (canvas, randomX, lives , speed) {
 
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
 
     this.speed = speed;
     this.y = 0;
-    this.x = this.canvas.width / 2;
-    this.lives = 1;
+    this.x = randomX;
+    this.lives = lives;
     this.size = 300;
 
 }; 
+
+Boss.prototype.removeLife = function () {
+
+    this.lives -= 1;
+}
 
 Boss.prototype.updatePosition = function () {
 

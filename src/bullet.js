@@ -12,56 +12,53 @@ function Bullet (canvas, playerX, playerY, playerDirection) {
 
 };
 
-
-// Bullet.prototype.bulletShot = function () {
-//    // this.draw()
-//     this.y = this.y + this.speed;
-//     console.log('bullet shot');
-
-// }
-
-Bullet.prototype.shotDirection = function (player) {
-
-    // if(direction === 'left') {
-    //     this.direction = this.x -= this.speed;
-    //   }
-  
-    //   else if (direction === 'right') {
-    //     this.direction = this.x += this.speed;
-    //   }
-  
-    //   else if (direction === 'up') {
-    //     this.direction = this.y -= this.speed;
-    //   }
-  
-    //   else if (direction === 'down') {
-    //     this.direction = this.y += this.speed;
-    //   };
-
-    // if (player.direction === 'up') {
-    //     this.direction = player.direction + this.speed
-    //   }
-    //   else if (player.direction === 'down') {
-    //     this.direction = player.direction + this.speed
-    //   }
-    //   else if (player.direction === 'left') {
-    //     this.direction = player.direction + this.speed
-    //   }
-    //   else if (player.direction === 'right') {
-    //     this.direction = player.direction + this.speed
-    //   }
-}
-
 Bullet.prototype.updatePosition = function () {
-
-    this.y = this.y - this.speed;
-    //console.log('yyyyy', this.y, this.x);
+    if(this.direction === 'left') {
+        this.x = this.x -= this.speed;
+      }
+  
+      else if (this.direction === 'right') {
+        this.x = this.x += this.speed;
+      }
+  
+      else if (this.direction === 'up') {
+        this.y = this.y -= this.speed;
+      }
+  
+      else if (this.direction === 'down') {
+        this.y = this.y += this.speed;
+      };
 };
+
 
 Bullet.prototype.draw = function () {
 
-    var image = new Image;
-    image.src = './images/laser beam.png';
+
+    if (this.direction === 'up') {
+      
+        var image = new Image;
+        image.src = '../images/laserup.png';
+        
+      }
+  
+      else if (this.direction === 'left') {
+  
+        var image = new Image;
+        image.src = '../images/laserleft.png';
+        
+      }
+      else if (this.direction === 'right') {
+  
+        var image = new Image;
+        image.src = '../images/laserright.png';
+        
+      }
+      else if (this.direction === 'down') {
+  
+        var image = new Image;
+        image.src = '../images/laserdown.png';
+        
+      }
 
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 }  

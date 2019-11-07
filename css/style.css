@@ -51,11 +51,18 @@ table {
 body {
     display: flex;
     justify-content: center;
-    /*background: url(http://www.graciaviva.cat/png/big/13/139005_pixel-art-space-background.jpg);*/
+
+    font-family: DisposableDroidBB;
     background: url(../images/spaceBackground.png);
     background-repeat: no-repeat;
     background-size: 1950px;
     color: white;
+}
+
+button {
+    font-family: DisposableDroidBB;
+    font-size: 1.4em;
+    background-color: rgba(246, 242, 8, 0.835);
 }
 
 .start-btn {
@@ -64,7 +71,7 @@ body {
     margin-right: auto;
     margin-top: 150px;
     width: 150px;
-    padding: 5px 15px;
+    padding: 10px 20px;
 }
 
 .game {

@@ -90,7 +90,7 @@ function main() {
 
     gameOverScreen = buildDom (`
     <main>
-        <img src="https://fontmeme.com/permalink/191104/42af41faf94d592f2950217bee343e78.png" alt="tiny-islanders-font" id="game-over">
+        <img src="https://fontmeme.com/permalink/191107/f08ac8b961b25409f579740f9cf73206.png" alt="tiny-islanders-font" id="game-over">
         <section class="final-score">
             <p>Your score: <span></span></p>
         <section>
