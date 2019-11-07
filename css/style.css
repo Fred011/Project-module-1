@@ -63,29 +63,47 @@ body {
 button {
     font-family: DisposableDroidBB;
     font-size: 1.4em;
+    width: 150px;
+    padding: 15px 30px;
+    border: 2px solid rgb(8, 72, 246);
 }
 
 .start-btn {
     display: block;
-    background-color: rgb(246, 242, 8);
+    background-color: rgb(255, 251, 0);
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
     width: 150px;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    border: 2px solid rgb(8, 72, 246);
+    color: rgb(8, 72, 246);
+    box-shadow: 3px 1px 20px rgba(230, 255, 1, 0.349);
+    /* border-radius: 5px; */
 }
 
 .game {
     display: flex;
 }
 
-.restart-btn {
-    display: block;
+#restart-btn {
+    display: flex;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
-    width: 150px;
-    padding: 5px 15px;
+    padding-left: 37px;
+    background-color: rgb(0, 102, 255);
+    color: rgb(255, 251, 0);
+    box-shadow: 3px 1px 20px rgba(1, 132, 255, 0.52);
+}
+
+#menu-btn {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    background-color: rgb(27, 219, 209);
+    color: rgb(174, 0, 255);
+    box-shadow: 3px 1px 20px rgba(2, 240, 228, 0.52);
 }
 
 #title1 {
@@ -93,6 +111,8 @@ button {
     margin-top: 40%;
     margin-left: auto;
     margin-right: auto;
+    height: 100px;
+    width: auto;
 }
 
 #title2 {
@@ -131,8 +151,19 @@ button {
 }
 
 .final-score {
-    margin-top: 50%;
+    display: flex;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 15%;
     margin-left: 40%;
     margin-right: 40%;
     padding-bottom: 50px;
+    width: 100px;
+    color: rgb(255, 251, 0);
+}
+
+
+#btn-section {
+    display: flex;
+    justify-content: space-evenly;
 }

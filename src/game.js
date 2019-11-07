@@ -99,7 +99,7 @@ function Game() {
         var newBoss = new Boss(this.canvas, randomX, 5, 1);
         this.boss.push(newBoss);
 
-    }, 5000); // will start after 5000 m/s;
+    }, 10000); // will start after 10000 m/s;
       
   }
   

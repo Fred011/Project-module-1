@@ -18,7 +18,9 @@ function main() {
   var mainMusic = document.getElementById('gameMusic');
 
   function createSplashScreen() {
-
+    
+    splashSound.currentTime = 0
+    splashSound.play();
     splashScreen = buildDom(`
      <main>
         <section id="title1">
@@ -27,11 +29,10 @@ function main() {
         <section id="title2">
           <img src="https://fontmeme.com/permalink/191106/4227d3afa67613e0a7f49462c226676c.png" alt="tiny-islanders-font">
         </section>
-          <button class="start-btn">Start Game</button>
+          <button class="start-btn">Play</button>
      </main>
     `);
 
-    splashSound.play();
 
     document.body.appendChild(splashScreen);
 
@@ -101,14 +102,17 @@ function main() {
     <main>
         <img src="https://fontmeme.com/permalink/191107/f08ac8b961b25409f579740f9cf73206.png" alt="tiny-islanders-font" id="game-over">
         <section class="final-score">
-            <p>Your score: <span></span></p>
-        <section>
-        <button id="restart-btn">Restart</button>
-        <button id="menu-btn">Menu</button>
+            <p>Score: <span></span></p>
+        </section>
+        <section id="btn-section">
+            <button id="restart-btn">Restart</button>
+            <button id="menu-btn">Menu</button>
+        </section>
     </main>
     `);
 
     mainMusic.pause();
+    splashSound.currentTime = 0
     splashSound.play();
 
     var button = gameOverScreen.querySelector('#restart-btn');
