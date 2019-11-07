@@ -7,8 +7,8 @@ function Bullet (canvas, playerX, playerY, playerDirection) {
     this.size = 25 ;
     this.direction = playerDirection;
     this.speed = 10;
-    this.x = playerX + 12;
-    this.y = playerY + 5;
+    this.x = playerX + 17;
+    this.y = playerY + 17;
 
 };
 
