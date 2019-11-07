@@ -13,6 +13,8 @@ function main() {
   var splashScreen;
   var gameOverScreen;
   var gameScreen;
+  var laser = document.getElementById('laser');
+  var splashSound = document.getElementById('splashSound')
 
   function createSplashScreen() {
 
@@ -27,6 +29,8 @@ function main() {
           <button class="start-btn">Start Game</button>
      </main>
     `);
+
+    splashSound.play();
 
     document.body.appendChild(splashScreen);
 
@@ -54,7 +58,9 @@ function main() {
       </main>
    `);
 
-    document.body.appendChild(gameScreen);
+  splashSound.pause()
+
+  document.body.appendChild(gameScreen);
 
     return gameScreen;
   }
@@ -98,6 +104,8 @@ function main() {
         <button id="menu-btn">Menu</button>
     </main>
     `);
+
+    splashSound.play();
 
     var button = gameOverScreen.querySelector('#restart-btn');
     button.addEventListener('click', function() {

@@ -27,6 +27,7 @@ function Game() {
     this.canvas.setAttribute('width', window.innerWidth);
     this.canvas.setAttribute('height', window.innerHeight);
   
+    
     // Create new player
     this.player = new Player(this.canvas, 3);
 
@@ -68,6 +69,9 @@ function Game() {
   
         event.preventDefault();
         this.createBullet();
+        laser.currentTime = 0;
+        laser.play();
+
       } 
     };
 
@@ -132,6 +136,7 @@ function Game() {
       this.boss = this.boss.filter(function (boss) {
 
         boss.updatePosition();
+        this.bossFollowPlayer(boss);
         
         return boss.isInsideTheScreen();
 
@@ -260,6 +265,21 @@ function Game() {
         enemy.y -= 1.7
       } else {
         enemy.y += 0.3
+      };
+    };
+
+    Game.prototype.bossFollowPlayer = function (boss) {
+
+      if (boss.x < this.player.x) {
+        boss.x += 0.5
+      } else {
+        boss.x -= 0.5
+      };
+
+      if (boss.y > this.player.y) {
+        boss.y -= 1.7
+      } else {
+        boss.y += 0.3
       };
     };
 

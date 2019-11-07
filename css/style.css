@@ -62,11 +62,11 @@ body {
 button {
     font-family: DisposableDroidBB;
     font-size: 1.4em;
-    background-color: rgba(246, 242, 8, 0.835);
 }
 
 .start-btn {
     display: block;
+    background-color: rgba(246, 242, 8, 0.835);
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
@@ -103,14 +103,30 @@ button {
 
 #score-section {
     position: absolute;
+    /*
+    padding-top: 30px;
+    padding-left: 30px;
+    */
+    padding: 15px;
+    font-size: 1.4em;
+    background: rgba(0, 0, 0, 0.164);
+    /*
     width: 100%;
     text-align: center;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;*/
+}
+
+#lives {
+    color: red;
+}
+
+#score {
+    color: aqua;
 }
 
 #game-over {
-    margin-top: 30%;
+    margin-top: 50%;
 }
 
 .final-score {
