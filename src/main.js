@@ -29,14 +29,14 @@ function main() {
         <section id="title2">
           <img src="https://fontmeme.com/permalink/191106/4227d3afa67613e0a7f49462c226676c.png" alt="tiny-islanders-font">
         </section>
-          <button class="start-btn">Play</button>
+          <img src="./images/start button.png" class="start-btn">
      </main>
     `);
 
 
     document.body.appendChild(splashScreen);
 
-    var startButton = splashScreen.querySelector('button');
+    var startButton = splashScreen.querySelector('.start-btn');
     startButton.addEventListener('click', function() {
       startGame();
     });
@@ -105,8 +105,8 @@ function main() {
             <p>Score: <span></span></p>
         </section>
         <section id="btn-section">
-            <button id="restart-btn">Restart</button>
-            <button id="menu-btn">Menu</button>
+            <img src="./images/retry_button.png" id="restart-btn">
+            <img src="../images/menu button.png" id="menu-btn">
         </section>
     </main>
     `);
