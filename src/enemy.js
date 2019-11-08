@@ -5,7 +5,7 @@ function Enemy (canvas, x, speed) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
 
-    this.size = 40;
+    this.size = 60;
     this.y = 0 - this.size;
     this.x = x;
     this.speed = speed;
@@ -88,7 +88,7 @@ Enemy.prototype.bottomScreenCollision = function (screen) {
 Enemy.prototype.draw = function () {
 
     var image = new Image;
-    image.src = './images/spaceship 2.png';
+    image.src = './images/spaceshipEnemy.png';
 
     this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
 
