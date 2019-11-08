@@ -9,7 +9,7 @@ function Player(canvas, lives) {
     this.y = (canvas.height - 1) - this.size;
     this.direction = 0;
     this.directionName = `up`;
-    this.speed = 30;
+    this.speed = 20;
   }
 
   Player.prototype.setDirection = function (direction) {
