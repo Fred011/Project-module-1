@@ -106,7 +106,7 @@ function main() {
         </section>
         <section id="btn-section">
             <img src="./images/retry_button.png" id="restart-btn">
-            <img src="../images/menu button.png" id="menu-btn">
+            <img src="./images/menu button.png" id="menu-btn">
         </section>
     </main>
     `);
