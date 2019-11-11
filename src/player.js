@@ -15,6 +15,7 @@ class Player {
 
   };
 
+  // SET THE DIRECTION OF THE PLAYER
   setDirection(direction) {
 
     if(direction === 'left') {
@@ -39,6 +40,7 @@ class Player {
 
   };
 
+  // CHECKS THE COLLISIONS WITH ENEMIES
   didCollide(enemy) {
 
     var playerLeft = this.x;
@@ -68,6 +70,7 @@ class Player {
     return false;
   };
 
+  // CHECKS THE COLLISIONS WITH THE BOSS
   didCollideBoss(boss) {
     
     var playerLeft = this.x;
@@ -98,6 +101,7 @@ class Player {
 
   };
 
+  // CHECKS IF THE PLAYER COLLIDES WITH THE SCREEN BORDERS
   handleScreenCollision() {
 
     var screenLeft = 0;
@@ -122,12 +126,14 @@ class Player {
 
   };
 
+  // REMOVE A LIFE FROM PLAYER
   removeLife() {
 
     this.lives -= 1;
 
   }
 
+  // DRAW THE PLAYER
   draw() {
 
     if (this.directionName === 'up') {
