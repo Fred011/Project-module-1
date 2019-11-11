@@ -1,8 +1,10 @@
-  
-function Player(canvas, lives) {
+'use strict'
+
+class Player {
+  constructor (canvas, lives) {
+
     this.canvas = canvas;
-    this.ctx = this.canvas.getContext('2d');
-  
+    this.ctx = this.canvas .getContext('2d');
     this.lives = lives;
     this.size = 60;
     this.x = canvas.width / 2;
@@ -10,9 +12,10 @@ function Player(canvas, lives) {
     this.direction = 0;
     this.directionName = `up`;
     this.speed = 20;
-  }
 
-  Player.prototype.setDirection = function (direction) {
+  };
+
+  setDirection(direction) {
 
     if(direction === 'left') {
       this.direction = this.x -= this.speed;
@@ -33,10 +36,10 @@ function Player(canvas, lives) {
       this.direction = this.y += this.speed;
       this.directionName = `down`
     };
-  };
-  
 
-   Player.prototype.didCollide = function (enemy) {
+  };
+
+  didCollide(enemy) {
 
     var playerLeft = this.x;
     var playerRight = this.x + this.size;
@@ -63,11 +66,10 @@ function Player(canvas, lives) {
       return true;
     }
     return false;
+  };
 
-   };
-
-   Player.prototype.didCollideBoss = function (boss) {
-
+  didCollideBoss(boss) {
+    
     var playerLeft = this.x;
     var playerRight = this.x + this.size;
     var playerTop = this.y;
@@ -94,13 +96,12 @@ function Player(canvas, lives) {
     }
     return false;
 
-   };
+  };
 
-  Player.prototype.handleScreenCollision = function () {
+  handleScreenCollision() {
 
     var screenLeft = 0;
     var screenRight = this.canvas.width;
-
     var screenTop = 0;
     var screenBottom = this.canvas.height;
 
@@ -119,16 +120,15 @@ function Player(canvas, lives) {
         this.y = this.y - 7;
       };
 
-
   };
 
-  Player.prototype.removeLife = function () {
+  removeLife() {
 
-    this.lives -= 1
-    
-  };
+    this.lives -= 1;
 
-  Player.prototype.draw = function() {
+  }
+
+  draw() {
 
     if (this.directionName === 'up') {
       
@@ -156,6 +156,7 @@ function Player(canvas, lives) {
       
     }
 
-    this.ctx.drawImage(image, this.x, this.y, this.size, this.size)
+    this.ctx.drawImage(image, this.x, this.y, this.size, this.size);
+  }
 
-  };
+}
