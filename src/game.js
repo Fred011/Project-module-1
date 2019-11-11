@@ -163,7 +163,7 @@ function Game() {
 
       this.checkBulletCollisionsBoss();
 
-      this.enemyReachBottom();
+      // this.enemyReachBottom();
 
       this.enemies.forEach( function (enemy) {
           enemy.draw();
@@ -243,16 +243,16 @@ function Game() {
     }, this)
   };
 
-  Game.prototype.enemyReachBottom = function (player) {
+  // Game.prototype.enemyReachBottom = function (player) {
 
-    var player = this.player;
+  //   var player = this.player;
 
-      this.enemies.forEach(function (enemy) {
-        if (enemy.bottomScreenCollision(screen)) {
-          player.removeLife();
-        }
-      });
-    };
+  //     this.enemies.forEach(function (enemy) {
+  //       if (enemy.bottomScreenCollision(screen)) {
+  //         player.removeLife();
+  //       }
+  //     });
+  //   };
 
     Game.prototype.followPlayer = function (enemy) {
 
