@@ -13,6 +13,7 @@ class Bullet {
 
   };
 
+  // UPDATE THE POSITION OF THE BULLET
   updatePosition() {
 
     if(this.direction === 'left') {
@@ -33,10 +34,13 @@ class Bullet {
 
   };
 
+  // CHECK IF THE THE BULLET IS STILL IN THE SCREEN
   isInsideScreen() {
     return this.y + this.size / 2 > 0;
   };
 
+
+  // DRAW THE BULLET 
   draw() {
 
     if (this.direction === 'up') {
