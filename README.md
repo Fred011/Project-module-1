@@ -204,7 +204,7 @@ Definition of the different states and their transition (transition functions)
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](https://github.com/Fred011/Project-module-1)
+[Link Repo](https://github.com/Fred011/Space-Explorer)
 [Link Deploy](https://fred011.github.io/Space-Explorer/)
 
 
