@@ -1,7 +1,7 @@
 # SPACE EXPLORER 
 
 ## Description
-This is a shooter game where the player has to kill enemies to get the best score. The player starts with 3 lives and score 0. Enemies will randomly come from top of the screen and try to kill the player. To defend himself, the player have a laser gun to blow up the enemies. The game ends when the player has no lives left.
+This is a shooter game where the player has to kill enemies to get the best score. The player starts with 3 lives and score 0. Enemies will randomly come from top of the screen and try to kill the player. To defend himself, the player has a laser gun to blow up the enemies. The game ends when the player has no lives left.
 
 ## Instructions
 
