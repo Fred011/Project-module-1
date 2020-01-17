@@ -23,17 +23,12 @@ This is a shooter game where the player has to kill enemies to get the best scor
 
 ## Backlog
 
-- direction up and down
+- multiplayer
+- leaderboard
 - enemies will come from every sides
-- enemies movements will update to the player position
-- score
-- move up
-- move down
 - increase dificulty 
 - get random items that can change the bullets
 - press two keys at the same time
-- images
-- sound effects
 
 ---
 
