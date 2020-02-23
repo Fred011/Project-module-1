@@ -7,6 +7,8 @@ This is a shooter game where the player has to kill enemies to get the best scor
 
 - to move left, press left arrow key
 - to move right, press right arrow key
+- to move down, press down arrow key
+- to move up, press up arrow key
 - to shoot, press space bar
 
 ---
